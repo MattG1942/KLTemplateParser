@@ -1,0 +1,51 @@
+// define available <T> values
+# Substitutes
+# <T> Num
+# <T2> Floats
+# <T3> UInts
+// base Types: UInt8 SInt8 UInt16 SInt16 UInt32 SInt32 UInt64 SInt64 Float32 Float64 Boolean String
+// Default groups: Floats, Ints, UInts, SInts, Num, AllBase
+// Substitutes are space seperated.
+// Do not leave White space on the end of any line starting with '#'
+
+# Filename "SampleKL.kl"
+
+// Substitutions and Filename are optional; Default Substitution is <T> Num, Default Filename is ParsedKL.KL
+// coments using the // notation will be ignored up to this point, infact any line not starting '#' will be ignored.
+// within the functions section they will be parsed as a kl comment.
+// currently only 1 substitute is allowed per function.
+// However by generating a new template from the resulting code to run the Parser a second time multiple substitutes may be acheived.
+
+# Functions
+# <T>
+function <T>[] +(<T> a[], <T> b){
+  <T> c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is <T>.
+
+# <T2>
+function <T2>[] +(<T2> a[], <T2> b){
+  <T2> c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+
+#
+// We can put a general comment here for the folowing group of functions created from the template
+# <T3>
+function <T3>[] +(<T3> a[], <T3> b){
+  <T3> c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}

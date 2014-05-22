@@ -1,0 +1,151 @@
+function UInt8[] +(UInt8 a[], UInt8 b){
+  UInt8 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is UInt8.
+
+function SInt8[] +(SInt8 a[], SInt8 b){
+  SInt8 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is SInt8.
+
+function UInt16[] +(UInt16 a[], UInt16 b){
+  UInt16 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is UInt16.
+
+function SInt16[] +(SInt16 a[], SInt16 b){
+  SInt16 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is SInt16.
+
+function UInt32[] +(UInt32 a[], UInt32 b){
+  UInt32 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is UInt32.
+
+function SInt32[] +(SInt32 a[], SInt32 b){
+  SInt32 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is SInt32.
+
+function UInt64[] +(UInt64 a[], UInt64 b){
+  UInt64 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is UInt64.
+
+function SInt64[] +(SInt64 a[], SInt64 b){
+  SInt64 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is SInt64.
+
+function Float32[] +(Float32 a[], Float32 b){
+  Float32 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is Float32.
+
+function Float64[] +(Float64 a[], Float64 b){
+  Float64 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+// comments in the functions section are preserved and can even include the substitution the type like this: the type here is Float64.
+
+function Float32[] +(Float32 a[], Float32 b){
+  Float32 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+
+function Float64[] +(Float64 a[], Float64 b){
+  Float64 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+
+// We can put a general comment here for the folowing group of functions created from the template
+function UInt8[] +(UInt8 a[], UInt8 b){
+  UInt8 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+function UInt16[] +(UInt16 a[], UInt16 b){
+  UInt16 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+function UInt32[] +(UInt32 a[], UInt32 b){
+  UInt32 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
+function UInt64[] +(UInt64 a[], UInt64 b){
+  UInt64 c[];
+  c.resize(a.size);
+  for (Integer i = 0; i < a.size; i++) {
+    c[i] = a[i] + b;
+  }
+  return c;
+}
