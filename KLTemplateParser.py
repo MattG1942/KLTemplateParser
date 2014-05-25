@@ -23,9 +23,9 @@ def defaults(sList):
   if 'AllBase' in sList[:]:
     sList[sList[:].index('AllBase') : sList[:].index('AllBase') + 1] = AllBase
 
-TemplateFileName = 'SampleKLTemplate.klt'
-# import tkFileDialog
-# TemplateFileName = tkFileDialog.askopenfilename()
+# TemplateFileName = 'SampleKLTemplate.klt'
+import tkFileDialog
+TemplateFileName = tkFileDialog.askopenfilename()
 
 TemplateFile = open(TemplateFileName, 'r')
 KLFileName = 'ParsedKL.kl'
