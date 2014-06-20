@@ -1,5 +1,7 @@
 # KL Template Parser
 
+import sys
+
 # Default type groups
 Floats = ['Float32', 'Float64']
 Ints = ['UInt8', 'SInt8', 'UInt16', 'SInt16', 'UInt32', 'SInt32', 'UInt64', 'SInt64']
@@ -23,56 +25,63 @@ def defaults(sList):
   if 'AllBase' in sList[:]:
     sList[sList[:].index('AllBase') : sList[:].index('AllBase') + 1] = AllBase
 
-# TemplateFileName = 'SampleKLTemplate.klt'
-import tkFileDialog
-TemplateFileName = tkFileDialog.askopenfilename()
+def do(TemplateFile, KLFileName, Substitutes):
+  #TemplatethisLine = TemplateFile.readline() # Read line
+  for line in TemplateFile:
+    if line[0:3] == '# <':
+      SubList = line[2:].split()
+      defaults(SubList)
+      Substitutes = Substitutes + [SubList]
+    elif line[0:10] == '# Filename':
+      KLFileName = line[12:-2]
+    elif line[0:11] == '# Functions':
+      break
+  if len(Substitutes) == 0:
+    Substitutes = ['<T>'] + Num # Default if no Substitutes specified
 
-TemplateFile = open(TemplateFileName, 'r')
-KLFileName = 'ParsedKL.kl'
-Substitutes = []
+  functionID = -1
+  functionText = []
+  thisSub = []
 
-#TemplatethisLine = TemplateFile.readline() # Read line
-for line in TemplateFile:
-  if line[0:3] == '# <':
-    SubList = line[2:].split()
-    defaults(SubList)
-    Substitutes = Substitutes + [SubList]
-  elif line[0:10] == '# Filename':
-    KLFileName = line[12:-2]
-  elif line[0:11] == '# Functions':
-    break
-if len(Substitutes) == 0:
-  Substitutes = ['<T>'] + Num # Default if no Substitutes specified
+  for line in TemplateFile:
+    if line[0] == '#':
+      functionID = functionID + 1
+      functionText = functionText + ['']
+      thisSub = thisSub + [line[2:-1]]
+    else:
+      functionText[functionID] = functionText[functionID] + line
 
-functionID = -1
-functionText = []
-thisSub = []
+  functionReturn = []
 
-for line in TemplateFile:
-  if line[0] == '#':
-    functionID = functionID + 1
-    functionText = functionText + ['']
-    thisSub = thisSub + [line[2:-1]]
+  for i, func in enumerate(functionText):
+    if thisSub[i] != '':
+      sl = 0
+      for s, SubList in enumerate(Substitutes):
+        if SubList[0] == thisSub[i]:
+          sl = s
+      for Sub in Substitutes[sl][1:]:
+        functionReturn = functionReturn + [func.replace(thisSub[i], Sub)]
+    else:
+      functionReturn = functionReturn + [func]
+
+  KLFile = open(KLFileName, 'w') #maybe 'a'
+
+  for i, func in enumerate(functionReturn):
+    KLFile.writelines(functionReturn[i])
+
+  TemplateFile.close()
+  KLFile.close()
+
+if __name__ == "__main__":
+  if len(sys.argv) == 1:
+    # TemplateFileName = 'SampleKLTemplate.klt'
+    import tkFileDialog
+    TemplateFileName = tkFileDialog.askopenfilename()
   else:
-    functionText[functionID] = functionText[functionID] + line
+    TemplateFileName = sys.argv[1]
 
-functionReturn = []
+  TemplateFile = open(TemplateFileName, 'r')
+  KLFileName = 'ParsedKL.kl'
+  Substitutes = []
 
-for i, func in enumerate(functionText):
-  if thisSub[i] != '':
-    sl = 0
-    for s, SubList in enumerate(Substitutes):
-      if SubList[0] == thisSub[i]:
-        sl = s
-    for Sub in Substitutes[sl][1:]:
-      functionReturn = functionReturn + [func.replace(thisSub[i], Sub)]
-  else:
-    functionReturn = functionReturn + [func]
-
-KLFile = open(KLFileName, 'w') #maybe 'a'
-
-for i, func in enumerate(functionReturn):
-  KLFile.writelines(functionReturn[i])
-
-TemplateFile.close()
-KLFile.close()
+  do(TemplateFile, KLFileName, Substitutes)
