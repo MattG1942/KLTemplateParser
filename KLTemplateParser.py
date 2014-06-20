@@ -25,19 +25,30 @@ def defaults(sList):
   if 'AllBase' in sList[:]:
     sList[sList[:].index('AllBase') : sList[:].index('AllBase') + 1] = AllBase
 
-def do(TemplateFile, KLFileName, Substitutes):
+def do(TemplateFileName, KLFileNameIN, SubstitutesIN):
+  TemplateFile = open(TemplateFileName, 'r')
+
+  if KLFileNameIN == '-T':
+    KLFileName = 'ParsedKL.kl'
+  else:
+    KLFileName = KLFileNameIN
+  if SubstitutesIN != []:
+    Substitutes = [['<T>'] + SubstitutesIN]
+  else:
+    Substitutes = []
+
   #TemplatethisLine = TemplateFile.readline() # Read line
   for line in TemplateFile:
-    if line[0:3] == '# <':
+    if SubstitutesIN == [] and line[0:3] == '# <':
       SubList = line[2:].split()
       defaults(SubList)
       Substitutes = Substitutes + [SubList]
-    elif line[0:10] == '# Filename':
+    elif KLFileNameIN == '-T' and line[0:10] == '# Filename':
       KLFileName = line[12:-2]
     elif line[0:11] == '# Functions':
       break
   if len(Substitutes) == 0:
-    Substitutes = ['<T>'] + Num # Default if no Substitutes specified
+    Substitutes = [['<T>'] + Num] # Default if no Substitutes specified
 
   functionID = -1
   functionText = []
@@ -77,11 +88,21 @@ if __name__ == "__main__":
     # TemplateFileName = 'SampleKLTemplate.klt'
     import tkFileDialog
     TemplateFileName = tkFileDialog.askopenfilename()
+    KLFileName = '-T'
+    Substitutes = []
+  elif len(sys.argv) == 2:
+    TemplateFileName = sys.argv[1]
+    KLFileName = '-T'
+    Substitutes = []
+  elif len(sys.argv) == 3:  
+    TemplateFileName = sys.argv[1]
+    KLFileName = sys.argv[2]
+    Substitutes = []
   else:
     TemplateFileName = sys.argv[1]
+    KLFileName = sys.argv[2]
+    Substitutes = sys.argv[3:]
 
-  TemplateFile = open(TemplateFileName, 'r')
-  KLFileName = 'ParsedKL.kl'
-  Substitutes = []
+  do(TemplateFileName, KLFileName, Substitutes)
 
-  do(TemplateFile, KLFileName, Substitutes)
+# -T = look in template for file name.

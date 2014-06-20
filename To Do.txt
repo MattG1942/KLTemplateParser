@@ -1,0 +1,7 @@
+Comand line:
+cmd line find other than <T>
+
+from script:
+add return to script as string and not file.
+do from another script with one arg.
+Parse string templates instead of files?

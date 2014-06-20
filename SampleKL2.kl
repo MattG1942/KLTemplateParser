@@ -1,0 +1,7 @@
+// comment
+
+function Float32 foo(Float32 a, Float32 b){
+  Float32 c = a + b * a
+  return c;
+}
+
